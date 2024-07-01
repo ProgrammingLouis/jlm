@@ -1,0 +1,18 @@
+# Copyright 2024 Louis Maurin <louis7maurin@gmail.com>
+# See COPYING for terms of redistribution.
+
+jlm-hls-test_SOURCES = \
+	tools/jlm-hls-test/jlm-hls-test.cpp \
+
+jlm-hls-test_LIBS = \
+	libtooling \
+	libhls \
+	libllvm \
+	librvsdg \
+	libutil \
+
+jlm-hls-test_EXTRA_LDFLAGS = \
+    $(shell $(LLVMCONFIG) --libs core irReader --ldflags --system-libs) \
+    ${CIRCT_LDFLAGS}
+
+$(eval $(call common_executable,jlm-hls-test))

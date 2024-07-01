@@ -90,6 +90,10 @@ main(int argc, char ** argv)
     }
     stringToFile(output, commandLineOptions.OutputFiles_.to_str() + ".fir");
 
+    jlm::hls::DotHLS dhls;
+    // stringToFile(dhls.run(*rvsdgModule), commandLineOptions.OutputFiles_.path() + "/jlm_hls.dot");
+    stringToFile(dhls.run(*rvsdgModule), commandLineOptions.OutputFiles_.to_str() + ".dot");
+
     jlm::hls::VerilatorHarnessHLS vhls;
     stringToFile(vhls.run(*rvsdgModule), commandLineOptions.OutputFiles_.to_str() + ".harness.cpp");
 

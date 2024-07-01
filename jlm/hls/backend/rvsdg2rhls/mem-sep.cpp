@@ -276,6 +276,7 @@ void
 mem_sep_argument(jlm::rvsdg::region * region)
 {
   auto lambda = dynamic_cast<const llvm::lambda::node *>(region->nodes.begin().ptr());
+  assert(lambda);
   auto lambda_region = lambda->subregion();
   auto state_arg = GetMemoryStateArgument(*lambda);
   if (!state_arg)

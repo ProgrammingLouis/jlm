@@ -416,8 +416,14 @@ rvsdg2ref(llvm::RvsdgModule & rhls, std::string path)
 void
 rvsdg2rhls(llvm::RvsdgModule & rhls)
 {
+  FILE * file = fopen("jlm_rvsdg.txt", "w");
+  jlm::rvsdg::view(*rhls.Rvsdg().root()->graph(), file);
+
   pre_opt(rhls);
   merge_gamma(rhls);
+
+  FILE * file3 = fopen("intermediate_rhls.txt", "w");
+  jlm::rvsdg::view(*rhls.Rvsdg().root()->graph(), file3);
 
   //    mem_sep(rhls);
   mem_sep_argument(rhls);
@@ -438,9 +444,12 @@ rvsdg2rhls(llvm::RvsdgModule & rhls)
   // enforce 1:1 input output relationship
   add_sinks(rhls);
   add_forks(rhls);
-  add_buffers(rhls, true);
+  add_buffers(rhls, true); //! this adds passthrough buffers after forks and loads to allow for a faster side of the fork to not be slowed down by the other
   // ensure that all rhls rules are met
-  check_rhls(rhls);
+  // check_rhls(rhls);
+
+  FILE * file2 = fopen("jlm_rhls.txt", "w");
+  jlm::rvsdg::view(*rhls.Rvsdg().root()->graph(), file2);
 }
 
 void

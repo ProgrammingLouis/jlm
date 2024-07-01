@@ -24,6 +24,7 @@ ifdef ENABLE_HLS
 include jlm/hls/Makefile.sub
 include tools/jhls/Makefile.sub
 include tools/jlm-hls/Makefile.sub
+include tools/jlm-hls-test/Makefile.sub
 endif
 
 ifdef ENABLE_MLIR

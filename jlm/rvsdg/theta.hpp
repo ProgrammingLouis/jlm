@@ -379,6 +379,9 @@ theta_node::input(size_t index) const noexcept
 inline jlm::rvsdg::theta_output *
 theta_node::output(size_t index) const noexcept
 {
+  std::cout << "theta_node::output" << std::endl;
+  std::cout << "index: " << index << std::endl;
+  std::cout << "noutputs: " << noutputs() << std::endl;
   return static_cast<theta_output *>(node::output(index));
 }
 
